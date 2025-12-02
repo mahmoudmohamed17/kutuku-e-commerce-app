@@ -1,21 +1,99 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:e_commerce_app/core/constants/app_colors.dart';
+import 'package:e_commerce_app/core/utilities/extensions.dart';
 import 'package:e_commerce_app/features/home/data/models/product_item_model.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class ProductItem extends StatelessWidget {
+class ProductItem extends StatefulWidget {
   const ProductItem({super.key, required this.model});
   final ProductItemModel model;
 
   @override
+  State<ProductItem> createState() => _ProductItemState();
+}
+
+class _ProductItemState extends State<ProductItem> {
+  bool isFavorite = false;
+
+  @override
   Widget build(BuildContext context) {
-    return Column(
+    return Stack(
       children: [
-        CachedNetworkImage(
-          imageUrl: model.imgUrl,
-          placeholder: (context, url) =>
-              const Center(child: CircularProgressIndicator()),
+        Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(16),
+              child: CachedNetworkImage(
+                imageUrl: widget.model.imgUrl,
+                height: context.height * 0.16,
+                width: context.width,
+                fit: BoxFit.fill,
+                placeholder: (context, url) =>
+                    const Center(child: CircularProgressIndicator()),
+              ),
+            ),
+            10.h,
+            Text(
+              widget.model.name,
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                fontWeight: FontWeight.w700,
+                color: Colors.black,
+              ),
+            ),
+            4.h,
+            Text(
+              widget.model.description,
+              maxLines: 2,
+              textAlign: TextAlign.center,
+              overflow: TextOverflow.ellipsis,
+              style: Theme.of(
+                context,
+              ).textTheme.labelSmall?.copyWith(color: AppColors.secondary),
+            ),
+            4.h,
+            Text(
+              '\$${widget.model.price}',
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                color: Colors.black,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+          ],
         ),
-        
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Align(
+            alignment: Alignment.topRight,
+            child: Container(
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.grey.shade700,
+              ),
+              child: AnimatedSwitcher(
+                duration: const Duration(milliseconds: 300),
+                transitionBuilder: (child, animation) =>
+                    ScaleTransition(scale: animation, child: child),
+                child: IconButton(
+                  key: ValueKey(isFavorite),
+                  onPressed: () => setState(() {
+                    isFavorite = !isFavorite;
+                  }),
+                  visualDensity: VisualDensity.compact,
+                  icon: Icon(
+                    isFavorite
+                        ? FontAwesomeIcons.solidHeart
+                        : FontAwesomeIcons.heart,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
       ],
     );
   }
