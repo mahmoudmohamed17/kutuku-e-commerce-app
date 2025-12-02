@@ -68,10 +68,10 @@ class _ProductItemState extends State<ProductItem> {
           padding: const EdgeInsets.all(8.0),
           child: Align(
             alignment: Alignment.topRight,
-            child: Container(
-              decoration: BoxDecoration(
+            child: DecoratedBox(
+              decoration: const BoxDecoration(
                 shape: BoxShape.circle,
-                color: Colors.grey.shade700,
+                color: Colors.black54,
               ),
               child: AnimatedSwitcher(
                 duration: const Duration(milliseconds: 300),

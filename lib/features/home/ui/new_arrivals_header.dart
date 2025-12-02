@@ -1,8 +1,8 @@
 import 'package:e_commerce_app/core/constants/app_colors.dart' show AppColors;
 import 'package:flutter/material.dart';
 
-class NewArrifalsHeader extends StatelessWidget {
-  const NewArrifalsHeader({super.key});
+class NewArrivalsHeader extends StatelessWidget {
+  const NewArrivalsHeader({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -10,7 +10,7 @@ class NewArrifalsHeader extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          'New Arrifals 🔥',
+          'New Arrivals 🔥',
           style: Theme.of(context).textTheme.titleLarge?.copyWith(
             fontWeight: FontWeight.w600,
             color: Colors.black,
