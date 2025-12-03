@@ -16,7 +16,7 @@ class MainPage extends StatelessWidget {
             screen: const SafeArea(child: HomePage()),
             item: ItemConfig(
               icon: const Padding(
-                padding: EdgeInsets.only(bottom: 6),
+                padding: EdgeInsets.only(bottom: 6, top: 6),
                 child: Icon(FontAwesomeIcons.house),
               ),
               title: 'Home',
@@ -31,7 +31,7 @@ class MainPage extends StatelessWidget {
             screen: const Center(child: Text('My Order')),
             item: ItemConfig(
               icon: const Padding(
-                padding: EdgeInsets.only(bottom: 6),
+                padding: EdgeInsets.only(bottom: 6, top: 6),
                 child: Icon(FontAwesomeIcons.truckFast),
               ),
               title: 'My Order',
@@ -46,7 +46,7 @@ class MainPage extends StatelessWidget {
             screen: const Center(child: Text('Favorites')),
             item: ItemConfig(
               icon: const Padding(
-                padding: EdgeInsets.only(bottom: 6),
+                padding: EdgeInsets.only(bottom: 6, top: 6),
                 child: Icon(FontAwesomeIcons.heart),
               ),
               title: 'Favorites',
@@ -61,7 +61,7 @@ class MainPage extends StatelessWidget {
             screen: const Center(child: Text('My Profile')),
             item: ItemConfig(
               icon: const Padding(
-                padding: EdgeInsets.only(bottom: 6),
+                padding: EdgeInsets.only(bottom: 6, top: 6),
                 child: Icon(FontAwesomeIcons.user),
               ),
               title: 'My Profile',
@@ -75,7 +75,7 @@ class MainPage extends StatelessWidget {
         ],
         navBarBuilder: (navBarConfig) =>
             Style6BottomNavBar(navBarConfig: navBarConfig),
-        margin: const EdgeInsets.all(8),
+        margin: const EdgeInsets.only(bottom: 6),
       ),
     );
   }

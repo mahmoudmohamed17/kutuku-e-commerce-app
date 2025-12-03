@@ -1,45 +1,70 @@
+import 'package:e_commerce_app/core/constants/app_colors.dart';
+import 'package:e_commerce_app/core/di/dependency_injection.dart';
 import 'package:e_commerce_app/core/utilities/extensions.dart';
-import 'package:e_commerce_app/features/home/data/models/product_item_model.dart';
+import 'package:e_commerce_app/features/home/managers/home_cubit/home_cubit.dart';
+import 'package:e_commerce_app/features/home/ui/category_tab_content.dart';
 import 'package:e_commerce_app/features/home/ui/home_app_bar.dart';
-import 'package:e_commerce_app/features/home/ui/home_banner_carousel.dart';
-import 'package:e_commerce_app/features/home/ui/new_arrivals_header.dart';
-import 'package:e_commerce_app/features/home/ui/product_item.dart';
+import 'package:e_commerce_app/features/home/ui/home_tab_content.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
   @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage>
+    with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 2, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const HomeAppBar(),
-        16.h,
-        const HomeBannerCarousel(),
-        16.h,
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16),
-          child: NewArrivalsHeader(),
-        ),
-        8.h,
-        Expanded(
-          child: GridView.builder(
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              // mainAxisSpacing: 4,
-              crossAxisSpacing: 12,
-              childAspectRatio: 0.7,
-            ),
-            itemCount: dummyProducts.length,
+    return BlocProvider(
+      create: (context) => getIt.get<HomeCubit>()..loadHomeData(),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const HomeAppBar(),
+          TabBar(
+            controller: _tabController,
+            tabs: const [
+              Tab(text: 'Home'),
+              Tab(text: 'Category'),
+            ],
+            indicatorColor: AppColors.primary,
+            indicatorWeight: 1.0,
+            indicatorSize: TabBarIndicatorSize.tab,
+            unselectedLabelColor: AppColors.secondary,
+            dividerColor: Colors.transparent,
             padding: const EdgeInsets.symmetric(horizontal: 16),
-            itemBuilder: (context, index) {
-              return ProductItem(model: dummyProducts[index]);
-            },
+            splashBorderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(8),
+              topRight: Radius.circular(8),
+            ),
           ),
-        ),
-        12.h,
-      ],
+          16.h,
+          Expanded(
+            child: TabBarView(
+              controller: _tabController,
+              children: const [HomeTabContent(), CategoryTabContent()],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

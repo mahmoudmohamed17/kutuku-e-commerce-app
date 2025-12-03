@@ -23,15 +23,17 @@ class _ProductItemState extends State<ProductItem> {
         Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(16),
-              child: CachedNetworkImage(
-                imageUrl: widget.model.imgUrl,
-                height: context.height * 0.16,
-                width: context.width,
-                fit: BoxFit.fill,
-                placeholder: (context, url) =>
-                    const Center(child: CircularProgressIndicator()),
+            Expanded(
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(16),
+                child: CachedNetworkImage(
+                  imageUrl: widget.model.imgUrl,
+                  // height: context.height * 0.16,
+                  width: context.width,
+                  fit: BoxFit.cover,
+                  placeholder: (context, url) =>
+                      const Center(child: CircularProgressIndicator.adaptive()),
+                ),
               ),
             ),
             10.h,
@@ -45,10 +47,8 @@ class _ProductItemState extends State<ProductItem> {
             ),
             4.h,
             Text(
-              widget.model.description,
-              maxLines: 2,
+              widget.model.category,
               textAlign: TextAlign.center,
-              overflow: TextOverflow.ellipsis,
               style: Theme.of(
                 context,
               ).textTheme.labelSmall?.copyWith(color: AppColors.secondary),
