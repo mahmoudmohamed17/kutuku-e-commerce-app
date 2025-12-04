@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:e_commerce_app/core/constants/app_colors.dart';
+import 'package:e_commerce_app/core/utilities/build_shimmer.dart';
 import 'package:e_commerce_app/core/utilities/extensions.dart';
 import 'package:e_commerce_app/features/home/data/models/product_item_model.dart';
 import 'package:flutter/material.dart';
@@ -28,11 +29,10 @@ class _ProductItemState extends State<ProductItem> {
                 borderRadius: BorderRadius.circular(16),
                 child: CachedNetworkImage(
                   imageUrl: widget.model.imgUrl,
-                  // height: context.height * 0.16,
                   width: context.width,
                   fit: BoxFit.cover,
                   placeholder: (context, url) =>
-                      const Center(child: CircularProgressIndicator.adaptive()),
+                      buildShimmer(width: context.width),
                 ),
               ),
             ),

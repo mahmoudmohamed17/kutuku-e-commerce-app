@@ -12,7 +12,8 @@ class CategoryTabContent extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16),
       itemBuilder: (context, index) =>
           _categoryItem(context, categories[index]),
-      separatorBuilder: (_, index) => const SizedBox(height: 16),
+      separatorBuilder: (_, __) => const SizedBox(height: 12),
+      keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
     );
   }
 

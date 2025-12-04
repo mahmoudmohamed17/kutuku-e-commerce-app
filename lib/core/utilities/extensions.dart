@@ -9,3 +9,7 @@ extension SpaceExtension on num {
   SizedBox get h => SizedBox(height: toDouble());
   SizedBox get w => SizedBox(width: toDouble());
 }
+
+extension StringExtension on String {
+  String get capitalizeFirstLetter => this[0].toUpperCase() + substring(1);
+}

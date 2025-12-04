@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:e_commerce_app/core/constants/app_colors.dart';
+import 'package:e_commerce_app/core/di/dependency_injection.dart';
 import 'package:e_commerce_app/core/utilities/build_shimmer.dart';
 import 'package:e_commerce_app/core/utilities/extensions.dart';
 import 'package:e_commerce_app/features/home/managers/home_cubit/home_cubit.dart';
@@ -20,15 +21,16 @@ class _HomeBannerCarouselState extends State<HomeBannerCarousel> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomeCubit, HomeState>(
+      bloc: getIt.get<HomeCubit>(),
       builder: (context, state) {
         if (state is HomeSuccess) {
-          return _buildSuccessState(state.banners);
+          return _buildSuccessState(context, banners: state.banners);
         } else if (state is HomeLoading) {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: buildShimmer(
               width: context.width,
-              height: context.height * 0.18,
+              height: context.height * 0.2,
             ),
           );
         } else if (state is HomeError) {
@@ -40,13 +42,17 @@ class _HomeBannerCarouselState extends State<HomeBannerCarousel> {
               ).textTheme.titleMedium?.copyWith(color: AppColors.primary),
             ),
           );
+        } else {
+          return const SizedBox.shrink();
         }
-        return const SizedBox.shrink();
       },
     );
   }
 
-  Widget _buildSuccessState(List<String> banners) {
+  Widget _buildSuccessState(
+    BuildContext context, {
+    required List<String> banners,
+  }) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -56,12 +62,17 @@ class _HomeBannerCarouselState extends State<HomeBannerCarousel> {
               (BuildContext context, int itemIndex, int pageViewIndex) =>
                   ClipRRect(
                     borderRadius: const BorderRadius.all(Radius.circular(16)),
-                    child: Image.asset(banners[itemIndex], fit: BoxFit.cover),
+                    child: Image.asset(
+                      banners[itemIndex],
+                      fit: BoxFit.cover,
+                      width: context.width,
+                    ),
                   ),
           options: CarouselOptions(
-            height: 200,
+            height: context.height * 0.22,
             autoPlay: true,
             enlargeCenterPage: true,
+            viewportFraction: 0.9,
             onPageChanged: (index, reason) {
               setState(() {
                 _activeIndex = index;
