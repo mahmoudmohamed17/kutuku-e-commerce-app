@@ -1,7 +1,7 @@
 import 'package:e_commerce_app/core/utilities/extensions.dart';
-import 'package:e_commerce_app/features/home/ui/home_banner_carousel.dart';
-import 'package:e_commerce_app/features/home/ui/new_arrivals_header.dart';
-import 'package:e_commerce_app/features/home/ui/products_grid.dart';
+import 'package:e_commerce_app/features/home/ui/pages/home_banner_carousel.dart';
+import 'package:e_commerce_app/features/home/ui/pages/new_arrivals_header.dart';
+import 'package:e_commerce_app/features/home/ui/pages/products_grid.dart';
 import 'package:flutter/material.dart';
 
 class HomeTabContent extends StatelessWidget {

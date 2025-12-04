@@ -1,5 +1,5 @@
 import 'package:e_commerce_app/core/constants/app_colors.dart';
-import 'package:e_commerce_app/features/home/ui/home_page.dart';
+import 'package:e_commerce_app/features/home/ui/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart';

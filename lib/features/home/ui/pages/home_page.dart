@@ -1,10 +1,10 @@
 import 'package:e_commerce_app/core/constants/app_colors.dart';
 import 'package:e_commerce_app/core/di/dependency_injection.dart';
 import 'package:e_commerce_app/core/utilities/extensions.dart';
-import 'package:e_commerce_app/features/home/managers/home_cubit/home_cubit.dart';
-import 'package:e_commerce_app/features/home/ui/category_tab_content.dart';
-import 'package:e_commerce_app/features/home/ui/home_app_bar.dart';
-import 'package:e_commerce_app/features/home/ui/home_tab_content.dart';
+import 'package:e_commerce_app/features/home/ui/managers/home_cubit/home_cubit.dart';
+import 'package:e_commerce_app/features/home/ui/pages/category_tab_content.dart';
+import 'package:e_commerce_app/features/home/ui/pages/home_app_bar.dart';
+import 'package:e_commerce_app/features/home/ui/pages/home_tab_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

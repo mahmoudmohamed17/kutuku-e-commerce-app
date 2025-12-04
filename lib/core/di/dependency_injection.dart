@@ -1,4 +1,4 @@
-import 'package:e_commerce_app/features/home/managers/home_cubit/home_cubit.dart';
+import 'package:e_commerce_app/features/home/ui/managers/home_cubit/home_cubit.dart';
 import 'package:get_it/get_it.dart';
 
 final getIt = GetIt.instance;
