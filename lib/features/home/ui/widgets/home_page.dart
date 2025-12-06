@@ -2,9 +2,9 @@ import 'package:e_commerce_app/core/constants/app_colors.dart';
 import 'package:e_commerce_app/core/di/dependency_injection.dart';
 import 'package:e_commerce_app/core/utilities/extensions.dart';
 import 'package:e_commerce_app/features/home/ui/managers/home_cubit/home_cubit.dart';
-import 'package:e_commerce_app/features/home/ui/pages/category_tab_content.dart';
-import 'package:e_commerce_app/features/home/ui/pages/home_app_bar.dart';
-import 'package:e_commerce_app/features/home/ui/pages/home_tab_content.dart';
+import 'package:e_commerce_app/features/home/ui/widgets/category_tab_content.dart';
+import 'package:e_commerce_app/features/home/ui/widgets/home_app_bar.dart';
+import 'package:e_commerce_app/features/home/ui/widgets/home_tab_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -47,7 +47,6 @@ class _HomePageState extends State<HomePage>
             ],
             indicatorColor: AppColors.primary,
             indicatorWeight: 1.0,
-            indicatorSize: TabBarIndicatorSize.tab,
             unselectedLabelColor: AppColors.secondary,
             dividerColor: Colors.transparent,
             padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -60,10 +59,7 @@ class _HomePageState extends State<HomePage>
           Expanded(
             child: TabBarView(
               controller: _tabController,
-              children: const [
-                HomeTabContent(),
-                CategoryTabContent(),
-              ],
+              children: const [HomeTabContent(), CategoryTabContent()],
             ),
           ),
         ],

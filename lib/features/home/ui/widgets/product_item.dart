@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:e_commerce_app/core/constants/app_colors.dart';
-import 'package:e_commerce_app/core/routing/routes.dart';
+import 'package:e_commerce_app/core/routing/app_routes.dart';
 import 'package:e_commerce_app/core/utilities/build_shimmer.dart';
 import 'package:e_commerce_app/core/utilities/extensions.dart';
 import 'package:e_commerce_app/features/home/data/models/product_item_model.dart';
@@ -23,7 +23,7 @@ class _ProductItemState extends State<ProductItem> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // context.push(Routes.productDetails, extra: widget.model);
+        context.push(AppRoutes.productDetailsRoute, extra: widget.model);
       },
       child: Stack(
         children: [
