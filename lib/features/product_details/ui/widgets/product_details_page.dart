@@ -1,8 +1,7 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:e_commerce_app/core/utilities/build_shimmer.dart';
-import 'package:e_commerce_app/core/utilities/extensions.dart';
 import 'package:e_commerce_app/features/home/data/models/product_item_model.dart';
-import 'package:e_commerce_app/features/product_details/ui/widgets/product_details_slidable_header.dart';
+import 'package:e_commerce_app/features/product_details/ui/widgets/product_details_app_bar.dart';
+import 'package:e_commerce_app/features/product_details/ui/widgets/product_details_footer.dart';
+import 'package:e_commerce_app/features/product_details/ui/widgets/product_info.dart';
 import 'package:flutter/material.dart';
 
 class ProductDetailsPage extends StatelessWidget {
@@ -13,32 +12,22 @@ class ProductDetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Stack(
+      body: Column(
         children: [
-          Positioned(
-            right: 0,
-            left: 0,
-            child: CachedNetworkImage(
-              imageUrl: model.imgUrl,
-              height: context.height * 0.45,
-              placeholder: (context, url) => buildShimmer(borderRadius: 0),
-              fit: BoxFit.cover,
-            ),
-          ),
-          Positioned(
-            top: context.height * 0.4,
-            right: 0,
-            left: 0,
-            height: context.height,
+          Expanded(
             child: CustomScrollView(
               slivers: [
-                SliverPersistentHeader(
-                  delegate: ProductDetailsSlidableHeader(model: model),
-                  floating: true,
-                ),
+                // Contains the product image
+                ProductDetailsAppBar(model: model),
+
+                // Containts the product name, review, description and most of the remaining info
+                SliverToBoxAdapter(child: ProductInfo(model: model)),
               ],
             ),
           ),
+
+          // Contains the product price and add to cart button
+          SafeArea(child: ProductDetailsFooter(model: model)),
         ],
       ),
     );

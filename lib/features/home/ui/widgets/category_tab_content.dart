@@ -9,7 +9,7 @@ class CategoryTabContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.separated(
       itemCount: categories.length,
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+      padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
       itemBuilder: (context, index) =>
           _categoryItem(context, categories[index]),
       separatorBuilder: (_, __) => const SizedBox(height: 12),

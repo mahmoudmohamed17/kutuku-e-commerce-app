@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class ProductItemModel {
   final int id;
   final String name;
@@ -8,6 +10,7 @@ class ProductItemModel {
   final double rate;
   final int reviewsCount;
   final bool isFavorite;
+  final List<Color>? colors;
 
   ProductItemModel({
     required this.id,
@@ -19,6 +22,7 @@ class ProductItemModel {
     required this.rate,
     this.reviewsCount = 0,
     this.isFavorite = false,
+    this.colors,
   });
 }
 
@@ -35,6 +39,7 @@ final List<ProductItemModel> dummyProducts = [
     price: 149.99,
     rate: 4.5,
     reviewsCount: 342,
+    colors: [Colors.black, Colors.white, Colors.blue, Colors.red],
   ),
   ProductItemModel(
     id: 2,
@@ -48,6 +53,7 @@ final List<ProductItemModel> dummyProducts = [
     rate: 4.7,
     reviewsCount: 528,
     isFavorite: true,
+    colors: [Colors.black, Colors.grey, Colors.pink, Colors.green],
   ),
   ProductItemModel(
     id: 3,
@@ -59,6 +65,7 @@ final List<ProductItemModel> dummyProducts = [
     price: 89.99,
     rate: 4.3,
     reviewsCount: 187,
+    colors: [Colors.brown, Colors.black, const Color(0xFF8B4513)],
   ),
   ProductItemModel(
     id: 4,
@@ -71,6 +78,13 @@ final List<ProductItemModel> dummyProducts = [
     rate: 4.6,
     reviewsCount: 423,
     isFavorite: true,
+    colors: [
+      Colors.black,
+      Colors.white,
+      Colors.blue,
+      Colors.orange,
+      Colors.red,
+    ],
   ),
   ProductItemModel(
     id: 5,
@@ -95,6 +109,7 @@ final List<ProductItemModel> dummyProducts = [
     price: 129.99,
     rate: 4.2,
     reviewsCount: 143,
+    colors: [Colors.black, const Color(0xFF654321), const Color(0xFF8B4513)],
   ),
   ProductItemModel(
     id: 7,
@@ -108,6 +123,13 @@ final List<ProductItemModel> dummyProducts = [
     rate: 4.8,
     reviewsCount: 612,
     isFavorite: true,
+    colors: [
+      Colors.purple,
+      Colors.pink,
+      Colors.blue,
+      Colors.green,
+      Colors.teal,
+    ],
   ),
   ProductItemModel(
     id: 8,
@@ -132,6 +154,7 @@ final List<ProductItemModel> dummyProducts = [
     price: 24.99,
     rate: 4.1,
     reviewsCount: 174,
+    colors: [Colors.black, Colors.white, Colors.grey],
   ),
   ProductItemModel(
     id: 10,
